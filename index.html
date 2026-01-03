@@ -2,143 +2,627 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     
     <!-- SEO Meta Tags -->
-    <title>ZPHC Official - Фармацевтическая продукция премиум качества</title>
-    <meta name="description" content="ZPHC - официальный сайт. Фармацевтическая продукция высочайшего качества. Каталог, заказ, проверка подлинности через Telegram.">
-    <meta name="keywords" content="ZPHC, фармацевтика, качество, оригинал, проверка подлинности">
+    <title>ZPHC Official — Фармацевтическая продукция премиум качества</title>
+    <meta name="description" content="ZPHC — официальный каталог продукции. Пептиды, гормон роста, инъекционные и оральные препараты. Проверка подлинности, быстрый заказ через Telegram.">
+    <meta name="keywords" content="ZPHC, пептиды, гормон роста, тестостерон, анаболики, спортивная фармакология">
     
-    <!-- Open Graph для соцсетей -->
-    <meta property="og:title" content="ZPHC Official">
-    <meta property="og:description" content="Фармацевтическая продукция премиум качества">
+    <!-- Open Graph -->
+    <meta property="og:title" content="ZPHC Official — Каталог продукции">
+    <meta property="og:description" content="Фармацевтическая продукция премиум качества. Быстрый заказ через Telegram.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zphc.world">
-    <meta property="og:image" content="https://zphc.world/assets/og-image.png">
+    <meta property="og:image" content="https://zphc.world/brand/zphc-logo.png">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1525;
+            --bg-card: #151b2e;
+            --bg-card-hover: #1a2238;
+            --accent: #00b4ff;
+            --accent-glow: rgba(0, 180, 255, 0.3);
+            --accent-dark: #0090cc;
+            --success: #00d26a;
+            --warning: #ffb800;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.1);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), #0066ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        
+        .logo-text { font-size: 1.5rem; font-weight: 800; color: white; }
+        .logo-text span { color: var(--accent); }
+        
+        .header-actions { display: flex; gap: 12px; align-items: center; }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #0066ff);
+            color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 30px var(--accent-glow); }
+        
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--accent); }
+        .btn-icon { width: 20px; height: 20px; }
+        
+        .hero {
+            padding: 40px 20px 30px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 180, 255, 0.1) 0%, transparent 60%);
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p { color: var(--text-secondary); font-size: 1rem; max-width: 600px; margin: 0 auto 24px; }
+        
+        .trust-badges { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+        .trust-badge { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 0.85rem; }
+        .trust-badge svg { width: 20px; height: 20px; color: var(--success); }
+        
+        .filters-section { padding: 0 20px 20px; max-width: 1400px; margin: 0 auto; }
+        
+        .search-box { position: relative; margin-bottom: 16px; }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .search-input::placeholder { color: var(--text-muted); }
+        
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+        }
+        
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        
+        .category-pill {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        
+        .category-pill:hover { border-color: var(--accent); color: var(--text-primary); }
+        .category-pill.active { background: var(--accent); border-color: var(--accent); color: white; }
+        
+        .results-count { color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; }
+        
+        .products-section { padding: 0 20px 40px; max-width: 1400px; margin: 0 auto; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--bg-secondary); }
+        .product-info { padding: 16px; }
+        
+        .product-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(0, 180, 255, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price { font-size: 1.25rem; font-weight: 700; color: var(--success); margin-bottom: 12px; }
+        
+        .product-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent), #0066ff);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .product-btn:hover { opacity: 0.9; transform: scale(1.02); }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active { display: flex; }
+        
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            width: 40px; height: 40px;
+            background: var(--bg-card);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .modal-image { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .modal-content { padding: 24px; }
+        
+        .modal-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(0, 180, 255, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .modal-price { font-size: 2rem; font-weight: 800; color: var(--success); margin-bottom: 16px; }
+        .modal-description { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 136, 204, 0.4); }
+        
+        .footer {
+            background: var(--bg-secondary);
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-link:hover { color: var(--accent); }
+        .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 6px 30px rgba(0, 136, 204, 0.5);
+            z-index: 99;
+            transition: all 0.3s ease;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .floating-btn:hover { transform: scale(1.1); }
+        .floating-btn svg { width: 28px; height: 28px; }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 6px 30px rgba(0, 136, 204, 0.5); }
+            50% { box-shadow: 0 6px 40px rgba(0, 136, 204, 0.8); }
+        }
+        
+        @media (max-width: 640px) {
+            .header-content { justify-content: center; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .product-info { padding: 12px; }
+            .product-name { font-size: 0.9rem; }
+            .product-price { font-size: 1.1rem; }
+            .product-btn { padding: 10px; font-size: 0.8rem; }
+            .btn { padding: 10px 14px; font-size: 0.85rem; }
+        }
+        
+        .no-results { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+        .no-results-icon { font-size: 4rem; margin-bottom: 16px; }
+        .no-results h3 { color: var(--text-primary); margin-bottom: 8px; }
+    </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="particles" id="particles"></div>
-        <div class="gradient-overlay"></div>
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">Z</div>
+                <div class="logo-text"><span>Z</span>PHC</div>
+            </a>
+            <div class="header-actions">
+                <a href="https://zphc.hk" target="_blank" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                    Проверить
+                </a>
+                <a href="https://t.me/ZPHC_uzb_bot" target="_blank" class="btn btn-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.331.015.097.034.318.019.49z"/></svg>
+                    Telegram
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <h1>Фармацевтическая продукция премиум качества</h1>
+        <p>Официальный каталог ZPHC. Пептиды, гормон роста, инъекционные и оральные препараты.</p>
+        <div class="trust-badges">
+            <div class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Оригинал</div>
+            <div class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Проверка</div>
+            <div class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Доставка</div>
+        </div>
+    </section>
+    
+    <section class="filters-section">
+        <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Поиск препаратов...">
+        </div>
+        <div class="categories" id="categories">
+            <button class="category-pill active" data-category="all">Все</button>
+            <button class="category-pill" data-category="Пептиды">Пептиды</button>
+            <button class="category-pill" data-category="Гормон роста">Гормон роста</button>
+            <button class="category-pill" data-category="Инъекционные">Инъекционные</button>
+            <button class="category-pill" data-category="Оральные">Оральные</button>
+            <button class="category-pill" data-category="ПКТ">ПКТ</button>
+        </div>
+        <div class="results-count" id="resultsCount"></div>
+    </section>
+    
+    <section class="products-section">
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-content">
+                <span class="modal-category" id="modalCategory"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <p class="modal-description" id="modalDescription"></p>
+                <a href="#" target="_blank" class="modal-btn" id="modalBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.331.015.097.034.318.019.49z"/></svg>
+                    Заказать в Telegram
+                </a>
+            </div>
+        </div>
     </div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Logo Section -->
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo-glow"></div>
-                <h1 class="logo">
-                    <span class="logo-z">Z</span>
-                    <span class="logo-phc">PHC</span>
-                </h1>
+    
+    <a href="https://t.me/ZPHC_uzb_bot" target="_blank" class="floating-btn" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.331.015.097.034.318.019.49z"/></svg>
+    </a>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://t.me/ZPHC_uzb_bot" target="_blank" class="footer-link">📱 Telegram бот</a>
+                <a href="https://t.me/icbccc" target="_blank" class="footer-link">💬 Поддержка</a>
+                <a href="https://zphc.hk" target="_blank" class="footer-link">🛡️ Проверка</a>
             </div>
-            <p class="tagline">Pharmaceutical Quality You Can Trust</p>
-            <div class="badge">
-                <span class="badge-icon">✓</span>
-                <span>Official Partner</span>
+            <p class="footer-copy">© 2024-2026 ZPHC. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <script>
+const products = [
+  {"id":"chorionic-gonadotropin-5vials-1500iu","name":"Chorionic Gonadotropin 1500 I.U (5 vials)","price":25,"image":"brand/chorionic_Gonadotropin_5vials_1500iu-640x640.JPG","description":"Хорионический Гонадотропин Человека (ХГЧ) в дозировке 1500 МЕ от ZPHC. Применяется для стимуляции естественной выработки тестостерона, особенно после курса анаболических стероидов (ПКТ).","category":"ПКТ"},
+  {"id":"cjc-1295-2mg-5vial","name":"CJC-1295 2mg (5 vials)","price":50,"image":"brand/cjc-1295_2mg_5vial-640x640.JPG","description":"Синтетический пептид для стимуляции выработки гормона роста. Способствует росту мышечной массы, сжиганию жира, улучшению сна и восстановлению.","category":"Пептиды"},
+  {"id":"follistatin-1mg-5vials","name":"Follistatin 1mg (5 vials)","price":160,"image":"brand/follistatin_1mg_5vials-640x640.JPG","description":"Мощный ингибитор миостатина. Блокируя миостатин, фоллистатин вызывает значительный рост мышечной массы и силы.","category":"Пептиды"},
+  {"id":"ghrp2-5mg-5vials","name":"GHRP-2 5mg (5 vials)","price":50,"image":"brand/ghrp2_5mg_5vials-640x640.JPG","description":"Один из наиболее мощных стимуляторов секреции Гормона Роста. Увеличивает мышечную массу, уменьшает жир, улучшает состояние кожи.","category":"Пептиды"},
+  {"id":"ghrp6-5mg-5vials","name":"GHRP-6 5mg (5 vials)","price":50,"image":"brand/ghrp6_5mg_5vials-640x640.JPG","description":"Пептид для стимуляции секреции Гормона Роста. Вызывает сильное чувство голода, популярен для набора массы.","category":"Пептиды"},
+  {"id":"igf-1-lr3-1mg-5vials","name":"IGF-1 LR3 1mg (5 vials)","price":60,"image":"brand/igf-1-lr3_1mg_5vials-640x640.JPG","description":"Синтетический аналог IGF-1 с пролонгированным действием. Стимулирует гиперплазию мышечных волокон, снижает жировую массу.","category":"Пептиды"},
+  {"id":"peg-mgf-2mg-5vials","name":"PEG MGF 2mg (5 vials)","price":65,"image":"brand/peg-mgf_2mg_5vials-640x640.JPG","description":"Пегилированный механический фактор роста. Активирует стволовые мышечные клетки, ускоряет восстановление.","category":"Пептиды"},
+  {"id":"rhgh-fragment-176-191-5mg-5vials","name":"HGH Fragment 176-191 5mg (5 vials)","price":60,"image":"brand/rhgh_Fragment_176-191_5mg_5vials-640x640.JPG","description":"Фрагмент гормона роста для жиросжигания. Стимулирует липолиз в 10-12 раз мощнее, чем полный ГР.","category":"Пептиды"},
+  {"id":"tb500","name":"TB-500 (Thymosin Beta-4)","price":60,"image":"brand/tb500-640x640.JPG","description":"Регенеративный пептид для ускоренного заживления травм сухожилий, связок, суставов и мышц.","category":"Пептиды"},
+  {"id":"ipamorelin-5mg-5vials","name":"Ipamorelin 5mg (5 vials)","price":65,"image":"brand/ipamorelin_5mg_5vials-640x640.JPG","description":"Селективный стимулятор гормона роста. Не повышает кортизол и пролактин.","category":"Пептиды"},
+  {"id":"melanotan-2-10mg-5vials","name":"Melanotan 2 10mg (5 vials)","price":100,"image":"brand/melanotan-2_10mg_5vials-640x640.JPG","description":"Пептид для глубокого загара, повышения либидо и подавления аппетита.","category":"Пептиды"},
+  {"id":"zptropin","name":"ZPtropin 100 IU (ZPHC)","price":120,"image":"brand/zptropin-640x640.JPG","description":"Рекомбинантный гормон роста 100 МЕ. Увеличивает мышечную массу, сжигает жир, укрепляет суставы.","category":"Гормон роста"},
+  {"id":"boldenon-undecylenate-250mg-10ml","name":"Boldenone Undecylenate 250mg (Vial)","price":40,"image":"brand/boldenon_undecylenate_250mg_10ml_250mg_10ml_vial-640x640.jpg","description":"Инъекционный стероид длительного действия. Качественный набор массы, минимальная задержка воды.","category":"Инъекционные"},
+  {"id":"boldenon-undecylenate-amp-250mg","name":"Boldenon Undecanoate 250mg (Amp)","price":40,"image":"brand/boldenon_undecylenate_amp_250mg-640x640.JPG","description":"Болденон в ампулах. Повышает аппетит, увеличивает эритроциты, улучшает выносливость.","category":"Инъекционные"},
+  {"id":"drostanolone-propionate-100mg","name":"Drostanolone Propionate 100mg (Masteron)","price":40,"image":"brand/Drostanolone_Propionate_100mg-640x640.JPG","description":"Мастерон — идеальный стероид для сушки. Придает мышцам жесткость и рельеф.","category":"Инъекционные"},
+  {"id":"methenolone-enanthate-100","name":"Methenolone Enanthate 100 (Primobolan)","price":60,"image":"brand/Methenolone-Enanthate_100-640x640.jpg","description":"Примоболан Депот — мягкий стероид для сухой мышечной массы. Не ароматизируется.","category":"Инъекционные"},
+  {"id":"mix-of-trenbolones-200mg-10amp","name":"Mix of Trenbolones 200mg (10 amp)","price":65,"image":"brand/Mix-of-Trenbolones_200mg_10amp-640x640.JPG","description":"Смесь трех эфиров Тренболона. Один из самых мощных стероидов.","category":"Инъекционные"},
+  {"id":"nandrolone-decanoate-250-10amp","name":"Nandrolone Decanoate 250 (10 amp)","price":50,"image":"brand/Nandrolone-Decanoate-250_10amp-640x640.JPG","description":"Дека-Дураболин — классический стероид для набора массы и укрепления суставов.","category":"Инъекционные"},
+  {"id":"nandrolone-decanoate-250-vials","name":"Nandrolone Decanoate 250 (Vial)","price":50,"image":"brand/nandrolone-Decanoate-250_vials-640x640.JPG","description":"Нандролон во флаконе. Стимулирует синтез коллагена, полезен для суставов.","category":"Инъекционные"},
+  {"id":"nandrolone-phenylpropionate-100mg","name":"Nandrolone PhenylPropionate 100mg","price":50,"image":"brand/Nandrolone-PhenylPropionate_100mg_10vials-640x640.JPG","description":"NPP — быстродействующий нандролон. Меньше задержки воды, быстрое действие.","category":"Инъекционные"},
+  {"id":"test-cyp-vial","name":"Testosterone Cypionate (Vial)","price":35,"image":"brand/test_cyp_vial-640x640.jpg","description":"Тестостерон Ципионат — длиннодействующий эфир для набора массы и силы.","category":"Инъекционные"},
+  {"id":"testosterone-cypionate-250mg-amp","name":"Testosterone Cypionate 250mg (Amp)","price":35,"image":"brand/Testosterone-Cypionate_250mg_Amp-640x640.JPG","description":"Тестостерон Ципионат в ампулах. Период полувыведения около 8 дней.","category":"Инъекционные"},
+  {"id":"testosterone-enantate-250-amp","name":"Testosterone Enanthate 250mg (Amp)","price":35,"image":"brand/Testosterone-Enantate-U.S.P.-250-mg-Zhengzhou-Ampulle.jpg","description":"Тестостерон Энантат — классика для массы и силы. Стандарт U.S.P.","category":"Инъекционные"},
+  {"id":"testosterone-enanthate-250-vials10","name":"Testosterone Enanthate 250mg (10x1ml)","price":35,"image":"brand/Testosterone-Enanthate_250_vials10-640x640.JPG","description":"Тестостерон Энантат — набор из 10 ампул для длительного курса.","category":"Инъекционные"},
+  {"id":"testosterone-mix-250mg","name":"Testosterone Mix 250 (Sustanon Amp)","price":40,"image":"brand/Testosterone-mix_250mg-640x640.JPG","description":"Сустанон — смесь 4 эфиров тестостерона. Быстрый старт и длительное действие.","category":"Инъекционные"},
+  {"id":"testosterone-mix250mg-vials","name":"Testosterone Mix 250mg (Vial)","price":40,"image":"brand/Testosterone-Mix250mg_vials-640x640.JPG","description":"Сустанон во флаконе. Универсальный препарат для массы и ЗГТ.","category":"Инъекционные"},
+  {"id":"testosterone-propionate-100mg-amp","name":"Testosterone Propionate 100mg (Amp)","price":35,"image":"brand/Testosterone-Propionate_100mg_Amp-640x640.JPG","description":"Быстродействующий тестостерон. Минимальная задержка воды, идеален для сушки.","category":"Инъекционные"},
+  {"id":"testosterone-propionate-100mg-vials","name":"Testosterone Propionate 100mg (Vial)","price":35,"image":"brand/Testosterone-Propionate_100mg_vials-640x640.JPG","description":"Тестостерон Пропионат во флаконе. Быстрое действие, сухой вид мышц.","category":"Инъекционные"},
+  {"id":"trenbolone-acetate-100mg-amp","name":"Trenbolone Acetate 100mg (Amp)","price":55,"image":"brand/Trenbolone-Acetate_100mg_Apm-640x640 (1).JPG","description":"Тренболон Ацетат — один из самых мощных стероидов. Не конвертируется в эстрогены.","category":"Инъекционные"},
+  {"id":"trenbolone-acetate-100mg-vial","name":"Trenbolone Acetate 100mg (Vial)","price":55,"image":"brand/Trenbolone-Acetate_100mg_vials_vial-640x640.jpg","description":"Тренболон Ацетат во флаконе. Экстремальный прирост сухой массы.","category":"Инъекционные"},
+  {"id":"trenbolone-enanthate-200mg-amp","name":"Trenbolone Enanthate 200mg (Amp)","price":60,"image":"brand/Trenbolone-Enanthate_200mg_Amp640x640.JPG","description":"Тренболон Энантат — длинный эфир тренболона. Инъекции раз в 7-10 дней.","category":"Инъекционные"},
+  {"id":"stanozolol-suspension-50mg-vial","name":"Stanozolol Suspension 50mg (Vial)","price":30,"image":"brand/stanozolol-suspension_50mg_vial-640x640.JPG","description":"Винстрол инъекционный. Жесткость мышц, рельеф, сжигание жира.","category":"Инъекционные"},
+  {"id":"stanozolol-suspension-50mg-amp","name":"Stanozolol Suspension 50mg (Amp)","price":30,"image":"brand/Stanozolol-Suspension_50mg_vials-640x640.JPG","description":"Станозолол в ампулах. Быстрое действие, выраженный рельеф.","category":"Инъекционные"},
+  {"id":"anastazol-1mg-50tab","name":"Anastrozole 1mg (50 tabs)","price":30,"image":"brand/anastazol_1mg_50tab-640x640.JPG","description":"Аримидекс — ингибитор ароматазы. Контроль эстрогенов на курсе.","category":"Оральные"},
+  {"id":"clomiphene-citrate-50mg-50tab","name":"Clomiphene Citrate 50mg (50 tabs)","price":30,"image":"brand/Clomiphene_Citrate_50mg_50tab-640x640.JPG","description":"Кломид — для послекурсовой терапии (ПКТ). Восстанавливает выработку тестостерона.","category":"ПКТ"},
+  {"id":"letrozole-2-5mg","name":"Letrozole 2.5mg (50 tabs)","price":30,"image":"brand/letrozole_2.5mg-640x640.JPG","description":"Летрозол — мощный ингибитор ароматазы для максимального снижения эстрогенов.","category":"Оральные"},
+  {"id":"methandienone-10mg-100tab","name":"Methandienone 10mg (100 tabs)","price":25,"image":"brand/methandienone_10mg_100tab-640x640.JPG","description":"Данабол — классика для быстрого набора массы и силы.","category":"Оральные"},
+  {"id":"oxandrolone-10mg-100tab","name":"Oxandrolone 10mg (100 tabs)","price":45,"image":"brand/oxandrolone_10mg_100tab-640x640.JPG","description":"Анавар — мягкий стероид для сухой массы и силы. Низкая гепатотоксичность.","category":"Оральные"},
+  {"id":"oxymethalone-50mg-50tab","name":"Oxymetholone 50mg (50 tabs)","price":40,"image":"brand/oxymethalone_50mg_50tab-640x640.JPG","description":"Анадрол — один из самых мощных оральных стероидов для массы.","category":"Оральные"},
+  {"id":"sibutramine-20mg-50tab","name":"Sibutramine 20mg (50 tabs)","price":40,"image":"brand/sibutramine_20mg_50tab-640x640.JPG","description":"Сибутрамин — подавляет аппетит, помогает в борьбе с лишним весом.","category":"Оральные"},
+  {"id":"stanozolol-10mg-100tab","name":"Stanozolol 10mg (100 tabs)","price":25,"image":"brand/stanozolol_10mg_100tab-640x640.JPG","description":"Винстрол в таблетках. Сила, рельеф, жесткость мышц.","category":"Оральные"},
+  {"id":"t3","name":"T3 (Liothyronine Sodium)","price":25,"image":"brand/t3-640x640.JPG","description":"Т3 — гормон щитовидной железы для ускорения метаболизма и сжигания жира.","category":"Оральные"},
+  {"id":"turinabol-10mg-100tab","name":"Turinabol 10mg (100 tabs)","price":45,"image":"brand/Turinabol_10mg_100tab10-640x640.JPG","description":"Туринабол — качественный прирост сухой массы без задержки воды.","category":"Оральные"},
+  {"id":"exemestane-25mg-50tab","name":"Exemestane 25mg (50 tabs)","price":45,"image":"brand/exemestane_25mg_50tab-640x640.JPG","description":"Аромазин — необратимый ингибитор ароматазы для жесткого контроля эстрогенов.","category":"Оральные"},
+  {"id":"fluoxymesterone-10mg","name":"Fluoxymesterone 10mg (Halotestin)","price":40,"image":"brand/Fluoxymesterone_10mg-640x640.JPG","description":"Галотестин — экстремальная сила и агрессия без набора массы.","category":"Оральные"},
+  {"id":"mesterolone-50mg-50tab","name":"Mesterolone 50mg (Proviron)","price":40,"image":"brand/mesterolone_50mg_50tab-640x640.JPG","description":"Провирон — повышает свободный тестостерон, антиэстрогенный эффект.","category":"Оральные"},
+  {"id":"methenolone-acetate-25mg-50tab","name":"Methenolone Acetate 25mg (Primobolan)","price":50,"image":"brand/Methenolone-Acetate_25mg_50tab-640x640.JPG","description":"Примоболан в таблетках — мягкий стероид для сухой массы.","category":"Оральные"}
+];
+
+let currentCategory = 'all';
+let searchQuery = '';
+
+const productsGrid = document.getElementById('productsGrid');
+const searchInput = document.getElementById('searchInput');
+const categories = document.getElementById('categories');
+const resultsCount = document.getElementById('resultsCount');
+const modalOverlay = document.getElementById('modalOverlay');
+
+function filterProducts() {
+    let filtered = products;
+    if (currentCategory !== 'all') filtered = filtered.filter(p => p.category === currentCategory);
+    if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+    }
+    return filtered;
+}
+
+function renderProducts() {
+    const filtered = filterProducts();
+    resultsCount.textContent = `Показано: ${filtered.length} товаров`;
+    
+    if (filtered.length === 0) {
+        productsGrid.innerHTML = '<div class="no-results" style="grid-column:1/-1"><div class="no-results-icon">🔍</div><h3>Ничего не найдено</h3><p>Попробуйте изменить запрос</p></div>';
+        return;
+    }
+    
+    productsGrid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="openModal('${p.id}')">
+            <img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='brand/zphc-logo.png'">
+            <div class="product-info">
+                <span class="product-category">${p.category}</span>
+                <h3 class="product-name">${p.name}</h3>
+                <div class="product-price">$${p.price}</div>
+                <button class="product-btn" onclick="event.stopPropagation();window.open('https://t.me/ZPHC_uzb_bot?start=${p.id}','_blank')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.331.015.097.034.318.019.49z"/></svg>
+                    Заказать
+                </button>
             </div>
-        </header>
+        </div>
+    `).join('');
+}
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="info-card">
-                <div class="card-glow"></div>
-                <h2>Добро пожаловать</h2>
-                <p>Получите доступ к полному каталогу продукции, актуальным ценам и быстрому оформлению заказа через наш Telegram бот.</p>
-            </div>
+function openModal(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('modalImage').src = p.image;
+    document.getElementById('modalCategory').textContent = p.category;
+    document.getElementById('modalTitle').textContent = p.name;
+    document.getElementById('modalPrice').textContent = '$' + p.price;
+    document.getElementById('modalDescription').textContent = p.description;
+    document.getElementById('modalBtn').href = 'https://t.me/ZPHC_uzb_bot?start=' + p.id;
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-            <!-- Action Buttons -->
-            <div class="buttons-container">
-                <a href="https://t.me/ZPHC_uzb_bot" class="btn btn-primary" target="_blank" rel="noopener">
-                    <div class="btn-bg"></div>
-                    <div class="btn-content">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.331.015.097.034.318.019.49z"/>
-                        </svg>
-                        <span>Открыть Telegram</span>
-                    </div>
-                    <div class="btn-shine"></div>
-                </a>
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-                <a href="https://t.me/ZPHC_uzb_bot" class="btn btn-secondary" target="_blank" rel="noopener">
-                    <div class="btn-content">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                        </svg>
-                        <span>Каталог продукции</span>
-                    </div>
-                </a>
+searchInput.addEventListener('input', e => { searchQuery = e.target.value; renderProducts(); });
 
-                <a href="https://t.me/ZPHC_uzb_bot" class="btn btn-secondary" target="_blank" rel="noopener">
-                    <div class="btn-content">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                        </svg>
-                        <span>Сделать заказ</span>
-                    </div>
-                </a>
+categories.addEventListener('click', e => {
+    if (e.target.classList.contains('category-pill')) {
+        categories.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+        e.target.classList.add('active');
+        currentCategory = e.target.dataset.category;
+        renderProducts();
+    }
+});
 
-                <a href="https://zphc.hk" class="btn btn-secondary" target="_blank" rel="noopener">
-                    <div class="btn-content">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <path d="M9 12l2 2 4-4"/>
-                        </svg>
-                        <span>Проверить подлинность</span>
-                    </div>
-                </a>
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-                <a href="https://t.me/icbccc" class="btn btn-secondary" target="_blank" rel="noopener">
-                    <div class="btn-content">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                        <span>Поддержка / Новости</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Features -->
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <span>Безопасно</span>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">⚡</div>
-                    <span>Быстро</span>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">✨</div>
-                    <span>Качество</span>
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2024-2026 ZPHC. All rights reserved.</p>
-            <p class="footer-sub">Для связи используйте Telegram</p>
-        </footer>
-    </div>
-
-    <script src="js/main.js"></script>
+renderProducts();
+    </script>
 </body>
 </html>
