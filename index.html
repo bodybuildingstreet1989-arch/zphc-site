@@ -153,6 +153,51 @@
         .trust-badge { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 0.85rem; }
         .trust-badge svg { width: 20px; height: 20px; color: var(--success); }
         
+        .promo-banner {
+            max-width: 1400px;
+            margin: 0 auto 24px;
+            padding: 0 20px;
+        }
+        
+        .promo-banner a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #ff6b35, #ff4757, #ff6b35);
+            background-size: 200% 200%;
+            animation: gradient-move 3s ease infinite;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4);
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        
+        .promo-banner a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 71, 87, 0.5);
+        }
+        
+        @keyframes gradient-move {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .promo-icon { font-size: 1.5rem; }
+        .promo-text { font-size: 1rem; line-height: 1.4; }
+        .promo-text strong { display: block; font-size: 1.1rem; }
+        .promo-arrow { font-size: 1.3rem; animation: bounce-right 1s ease infinite; }
+        
+        @keyframes bounce-right {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+        
         .filters-section { padding: 0 20px 20px; max-width: 1400px; margin: 0 auto; }
         
         .search-box { position: relative; margin-bottom: 16px; }
@@ -441,6 +486,17 @@
             <div class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Доставка</div>
         </div>
     </section>
+    
+    <div class="promo-banner">
+        <a href="https://t.me/ZPHC_uzb_bot" target="_blank">
+            <span class="promo-icon">🔥</span>
+            <span class="promo-text">
+                <strong>Полный ассортимент и актуальные скидки — в Telegram!</strong>
+                Эксклюзивные предложения, мгновенный заказ и персональные консультации
+            </span>
+            <span class="promo-arrow">→</span>
+        </a>
+    </div>
     
     <section class="filters-section">
         <div class="search-box">
