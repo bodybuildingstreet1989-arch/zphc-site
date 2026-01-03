@@ -1,0 +1,11 @@
+# ZPHC Official Website
+# Robots.txt - Allow all search engines
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://zphc.world/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
